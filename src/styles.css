@@ -22,6 +22,10 @@ body{
     -moz-osx-font-smoothing:grayscale
 }
 
+a {
+    text-decoration: none !important;
+}
+
 ul{
     margin:0
 }
@@ -719,8 +723,13 @@ table.table.table-bordered th{
     font-weight:800;
     color:#0da8e4
 }
+
 .detail-section{
     margin-top:60px
+}
+
+.detail-img {
+    width: 30%;
 }
 /**/
 
