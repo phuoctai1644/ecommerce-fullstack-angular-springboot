@@ -30,7 +30,7 @@ const routes: Routes = [
     ProductCategoryMenuComponent,
     SearchComponent,
     ProductDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
