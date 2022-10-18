@@ -16,7 +16,7 @@ export class ProductService {
   getProductList(theCategoryId: number): Observable<Product[]> {
 
     // @TODO: need to build URL base categoryID
-    const searchURL = `${this.baseURL}/search/findByCategoryId?id=${theCategoryId}` 
+    const searchURL = `${this.baseURL}/search/findByCategoryId?id=${theCategoryId}`
 
     return this.getProducts(searchURL)
   }
