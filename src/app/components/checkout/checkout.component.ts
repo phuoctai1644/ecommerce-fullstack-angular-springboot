@@ -18,6 +18,7 @@ import { Luv2ShopValidators } from 'src/app/validators/luv2-shop-validators';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  storage: Storage = sessionStorage
 
   checkoutFormGroup!: FormGroup
 
@@ -39,6 +40,8 @@ export class CheckoutComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
+    // Read the user's email address from browser storage 
+    const email = JSON.parse(this.storage.getItem('userEmail')!)
 
     this.reviewCartDetails()
 
@@ -54,7 +57,7 @@ export class CheckoutComponent implements OnInit {
           Validators.minLength(2),
           Luv2ShopValidators.notOnlyWhiteSpace
         ]),
-        email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9._]+\\.[a-z]{2,4}$')])
+        email: new FormControl(email, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9._]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.formBuilder.group({
         country: new FormControl('', [Validators.required]),
@@ -218,6 +221,9 @@ export class CheckoutComponent implements OnInit {
     // Reset form data
     this.checkoutFormGroup.reset()
 
+    // Remove storage
+    this.storage.removeItem('cartItems')
+    
     // Navigate back to the products page
     this.router.navigateByUrl('/products')
   }
